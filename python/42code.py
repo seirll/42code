@@ -18,8 +18,10 @@
 
 import sys
 
-for arg in sys.argv:
-    file = open(arg, "r").read()
+arg = sys.argv
+
+if arg[1] == '-d' or arg[1] == '--decrypt':
+    file = open(arg[2], "r").read()
     tab = file.split
     for i in tab
         if i != "42"
@@ -28,6 +30,11 @@ for arg in sys.argv:
     lenght = len(tab)
     bincode = bin(lenght)
     
-    #TODO : Stockage dans un fichier
     
+elif arg[1] == '-e' or arg[1] == '--encrypt':
+    pass
 
+else:
+    print "Usage: 42Code.py <operation> <input> <output>"
+    print "    -e, --encrypt: converts the input file to the 42 language;"
+    print "    -d, --decrypt: converts the input file from the 42 language."
