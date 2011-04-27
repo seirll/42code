@@ -17,18 +17,29 @@
 
 
 import sys
+import struct
 
 arg = sys.argv
 
 if arg[1] == '-d' or arg[1] == '--decrypt':
-    file = open(arg[2], "r").read()
-    tab = file.split
+    inputf = open(arg[2], "r")
+    outputf = open(arg[3], "w")
+    
+    tab = inputf.read().split()
     for i in tab
         if i != "42"
             print "Fatal error : ", arg, " is not in the 42Code format."
             break
-    lenght = len(tab)
-    bincode = bin(lenght)
+    
+    content = []
+    
+    for i in inputf.readlines()
+        lenght = len(i.split())
+        octet = struct.pack('c', lenght)
+        content.append(octet)
+    
+    outputf.write(content.join())
+    
     
     
 elif arg[1] == '-e' or arg[1] == '--encrypt':
