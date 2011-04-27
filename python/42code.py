@@ -21,9 +21,20 @@
 import sys
 import struct
 
+
+
+def use():
+    print "Usage: 42code.py <operation> <input> <output>"
+    print "    -e, --encrypt: converts the input file to the 42 language;"
+    print "    -d, --decrypt: converts the input file from the 42 language."
+
+
 arg = sys.argv
 
-if arg[1] == '-d' or arg[1] == '--decrypt':
+if len(arg) != 4:
+    use()
+
+elif arg[1] == '-d' or arg[1] == '--decrypt':
     inputf = open(arg[2], "r")
     outputf = open(arg[3], "w")
     
@@ -46,9 +57,8 @@ if arg[1] == '-d' or arg[1] == '--decrypt':
     outputf.close()
     
 elif arg[1] == '-e' or arg[1] == '--encrypt':
-    pass
-
+    inputf = open(arg[2], "r")
+    outputf = open(arg[3], "w")
+    
 else:
-    print "Usage: 42code.py <operation> <input> <output>"
-    print "    -e, --encrypt: converts the input file to the 42 language;"
-    print "    -d, --decrypt: converts the input file from the 42 language."
+    use()
