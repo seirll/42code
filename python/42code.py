@@ -61,10 +61,10 @@ elif arg[1] == '-e' or arg[1] == '--encrypt':
     outputf = open(arg[3], "w")
     
     content = []
-    while True:
+    
+    octet = 1
+    while octet:
         octet = inputf.read(1)
-        if not octet:
-                break
         char = struct.unpack('B', octet)
         content.append("42 " * char[0] + "\n")
     
