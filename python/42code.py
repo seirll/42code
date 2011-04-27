@@ -17,62 +17,50 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
 import sys
 import struct
 
+arg = sys.argv
 
-
-def use():
-    print "Usage: 42code.py <operation> <input> <output>"
+def usage():
+    print "Usage: 42code.py <-d|-e> <input> <output>"
     print "    -e, --encrypt: converts the input file to the 42 language;"
     print "    -d, --decrypt: converts the input file from the 42 language."
 
+if __name__ == '__main__':
+    if len(arg) != 4:
+        usage()
 
-arg = sys.argv
+    elif arg[1] == '-d' or arg[1] == '--decrypt':
+        with open(arg[2], "r") as inputf:
+            for i in inputf.read().split():
+                if i != "42":
+                    print "[ERROR]", arg[2], "is not in the 42Code format."
+                    sys.exit(1)
 
-if len(arg) != 4:
-    use()
+            content = []
+            inputf.seek(0)
+            for i in inputf.readlines():
+                lenght = len(i.split())
+                octet = struct.pack('B', lenght)
+                content.append(octet)
 
-elif arg[1] == '-d' or arg[1] == '--decrypt':
-    inputf = open(arg[2], "r")
-    outputf = open(arg[3], "w")
-    
-    tab = inputf.read().split()
-    for i in tab:
-        if i != "42":
-            print "Fatal error : ", arg[2], " is not in the 42Code format."
-            break
-    
-    content = []
-    inputf.seek(0)
-    for i in inputf.readlines():
-        lenght = len(i.split())
-        octet = struct.pack('B', lenght)
-        content.append(octet)
-    
-    outputf.write("".join(content))
-    
-    inputf.close()
-    outputf.close()
-    
-elif arg[1] == '-e' or arg[1] == '--encrypt':
-    inputf = open(arg[2], "rb")
-    outputf = open(arg[3], "w")
-    
-    content = []
-    
-    octet = 1
-    while octet:
-        octet = inputf.read(1)
-        char = struct.unpack('B', octet)
-        content.append("42 " * char[0] + "\n")
-    
-    for line in content:
-        outputf.write(line)
+        with open(arg[3], "w") as outputf:
+            outputf.write("".join(content))
 
-    inputf.close()
-    outputf.close()
+    elif arg[1] == '-e' or arg[1] == '--encrypt':
+        content = []
+        with open(arg[2], "rb") as inputf:
+            while True:
+                octet = inputf.read(1)
+                if not octet:
+                    break
+                lenght = struct.unpack('B', octet)[0]
+                content.append("42 " * lenght + "\n")
 
-else:
-    use()
+        with open(arg[3], "w") as outputf:
+            for line in content:
+                outputf.write(line)
+
+    else:
+        usage()
