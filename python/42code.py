@@ -33,7 +33,7 @@ if arg[1] == '-d' or arg[1] == '--decrypt':
             break
     
     content = []
-    f.seek(0)
+    inputf.seek(0)
     for i in inputf.readlines():
         lenght = len(i.split())
         octet = struct.pack('B', lenght)
