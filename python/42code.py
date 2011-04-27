@@ -2,7 +2,7 @@
 #coding: utf-8
 
 #    42Code Decrypter
-#    Copyright (C) 2011  Association PROLOGIN <http://www.prologin.org>
+#    Copyright (C) 2011  42 Coders <http://koin.fr>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
