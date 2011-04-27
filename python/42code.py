@@ -1,7 +1,8 @@
 #!/usr/bin/python2
 #coding: utf-8
+
 #    42Code Decrypter
-#    Copyright (C) 2011  Antoine Pietri (Serialk) for Prologin™
+#    Copyright (C) 2011  Association PROLOGIN <http://www.prologin.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
