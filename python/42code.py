@@ -1,4 +1,5 @@
 #!/usr/bin/python2
+#coding: utf-8
 #    42Code Decrypter
 #    Copyright (C) 2011  Antoine Pietri (Serialk) for Prologin™
 #
@@ -26,21 +27,22 @@ if arg[1] == '-d' or arg[1] == '--decrypt':
     outputf = open(arg[3], "w")
     
     tab = inputf.read().split()
-    for i in tab
-        if i != "42"
+    for i in tab:
+        if i != "42":
             print "Fatal error : ", arg[2], " is not in the 42Code format."
             break
     
     content = []
     
-    for i in inputf.readlines()
+    for i in inputf.readlines():
         lenght = len(i.split())
         octet = struct.pack('c', lenght)
         content.append(octet)
     
-    outputf.write(content.join())
+    outputf.write("".join(content))
     
-    
+    inputf.close()
+    outputf.close()
     
 elif arg[1] == '-e' or arg[1] == '--encrypt':
     pass
