@@ -1,6 +1,6 @@
 module Decrypt (decrypt) where
 
-import qualified Data.ByteString as B
+import qualified Data.ByteString.Lazy as B
 
 decrypt :: String -> B.ByteString
 decrypt =

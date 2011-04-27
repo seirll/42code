@@ -1,6 +1,6 @@
 module Main (main) where
 
-import qualified Data.ByteString as B
+import qualified Data.ByteString.Lazy as B
 import Data.Maybe (fromMaybe)
 import Decrypt (decrypt)
 import Encrypt (encrypt)
