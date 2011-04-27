@@ -26,11 +26,11 @@ if arg[1] == '-d' or arg[1] == '--decrypt':
     inputf = open(arg[2], "r")
     outputf = open(arg[3], "w")
     
-    #tab = inputf.read().split()
-    #for i in tab:
-    #    if i != "42":
-    #        print "Fatal error : ", arg[2], " is not in the 42Code format."
-    #        break
+    tab = inputf.read().split()
+    for i in tab:
+        if i != "42":
+            print "Fatal error : ", arg[2], " is not in the 42Code format."
+            break
     
     content = []
     f.seek(0)
