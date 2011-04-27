@@ -57,8 +57,22 @@ elif arg[1] == '-d' or arg[1] == '--decrypt':
     outputf.close()
     
 elif arg[1] == '-e' or arg[1] == '--encrypt':
-    inputf = open(arg[2], "r")
+    inputf = open(arg[2], "rb")
     outputf = open(arg[3], "w")
     
+    content = []
+    while True:
+        octet = inputf.read(1)
+        if not octet:
+                break
+        char = struct.unpack('B', octet)
+        content.append("42 " * char[0] + "\n")
+    
+    for line in content:
+        outputf.write(line)
+
+    inputf.close()
+    outputf.close()
+
 else:
     use()
