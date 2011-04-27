@@ -28,7 +28,7 @@ if arg[1] == '-d' or arg[1] == '--decrypt':
     tab = inputf.read().split()
     for i in tab
         if i != "42"
-            print "Fatal error : ", arg, " is not in the 42Code format."
+            print "Fatal error : ", arg[2], " is not in the 42Code format."
             break
     
     content = []
@@ -46,6 +46,6 @@ elif arg[1] == '-e' or arg[1] == '--encrypt':
     pass
 
 else:
-    print "Usage: 42Code.py <operation> <input> <output>"
+    print "Usage: 42code.py <operation> <input> <output>"
     print "    -e, --encrypt: converts the input file to the 42 language;"
     print "    -d, --decrypt: converts the input file from the 42 language."
